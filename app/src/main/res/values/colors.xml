@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2f333e</color>
+    <color name="colorPrimaryDark">#585c69</color>
+    <color name="colorAccent">#FF4081</color>
+
+    //================Random Colors=================
+    <color name="box_one">#d65108</color>
+    <color name="box_two">#0267c1</color>
+    <color name="box_three">#f6c348</color>
+    <color name="box_four">#44a145</color>
+    <color name="box_ramdom">#6f6f6f</color>
+
+    <array name="colorchange">
+        <item>@color/box_one</item>
+        <item>@color/box_two</item>
+        <item>@color/box_three</item>
+        <item>@color/box_four</item>
+    </array>
+
+    //================Pop-Up Colors=================
+    <color name="bluedark">#2f333f</color>
+    <color name="bluelight">#49acd5</color>
+    <color name="green">#45bc62</color>
+    <color name="orange">#eaad43</color>
+    <color name="white">#fff</color>
+
+
+</resources>
