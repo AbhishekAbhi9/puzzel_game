@@ -20,16 +20,16 @@ public class MainActivity extends AppCompatActivity {
 
     //================Data stucture for keeping data of same type at same places
     private ArrayList<ArrayList_LinearLayout> arrayList_linearLayouts;
-    private int ArrayId[] = {R.id.box_four, R.id.box_one, R.id.box_three, R.id.box_two};
+    private int ArrayId[] = {R.id.box_one, R.id.box_two, R.id.box_three, R.id.box_four};
     private int[] ColorInder;
 
     //==============in build view class of android
     private TextView score;
-    private LinearLayout box;
+    private LinearLayout box, quit, reset;
     private TextView scoreBoard;
 
     //=============Variables that are used in this
-    private int milisecondRepeat = 10000;
+    private int milisecondRepeat = 5000;
     private int idPush = 0, temp, colorId, Score_Card = 0;
 
     //============inbuild classes of android
@@ -64,6 +64,28 @@ public class MainActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.custompopup);
         scoreBoard = dialog.findViewById(R.id.scoreUpdate);
         scoreBoard.setText(String.valueOf(score));
+
+        //===============For closing the dialog box
+        quit = dialog.findViewById(R.id.quit);
+        quit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+            }
+        });
+
+        //============For reset the dialog box
+        reset = dialog.findViewById(R.id.reset);
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StartTimer();
+                dialog.cancel();
+                Score_Card = 0;
+            }
+        });
+
+        mediaPlayer.pause();
         dialog.show();
     }
 
@@ -90,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
                             public void onClick(View v) {
                                 /*if user press non-grey box then the counter will stop and display pop
                                 with reset button and score */
-                                vibe.vibrate(100);
                                 finishTimer();
                                 dialogCustom(Score_Card);
                             }
@@ -110,8 +131,7 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View v) {
                                     /*if user press non-grey box then the counter will stop and display pop
-                                   with reset button and score */
-                                    vibe.vibrate(100);
+                                    with reset button and score */
                                     finishTimer();
                                     dialogCustom(Score_Card);
                                 }
@@ -171,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
     //when counter finish it count this function start the counter again
     private void StartTimer() {
         if (countDownTimer != null) {
+            mediaPlayer.start();
             countDownTimer.cancel();
             countDownTimer.start();
         }

@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/box_two"
+            android:background="@color/box_one"
             android:orientation="vertical"></LinearLayout>
 
         <LinearLayout
@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/box_four"
+            android:background="@color/box_two"
             android:orientation="vertical"></LinearLayout>
     </LinearLayout>
 
@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/box_one"
+            android:background="@color/box_four"
             android:orientation="vertical"></LinearLayout>
     </LinearLayout>
 

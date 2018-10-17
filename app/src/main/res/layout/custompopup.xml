@@ -23,10 +23,10 @@
             android:textSize="40sp"
             android:textStyle="bold" />
 
-        <view
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/bluelight" />
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/scoreUpdate"
