@@ -1,4 +1,4 @@
-package com.example.akabhi.backlight_game;
+package com.example.akabhi.backlight_game.PojoClasses;
 
 import android.widget.LinearLayout;
 

@@ -1,22 +1,36 @@
-package com.example.akabhi.backlight_game;
+package com.example.akabhi.backlight_game.Activity;
 
 import android.app.Dialog;
+import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.akabhi.backlight_game.Adapter.TopScoreAdapter;
+import com.example.akabhi.backlight_game.DataBase.DataBase;
+import com.example.akabhi.backlight_game.PojoClasses.ArrayList_LinearLayout;
+import com.example.akabhi.backlight_game.PojoClasses.TopScore;
+import com.example.akabhi.backlight_game.R;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    //================DataBase Files
+    private DataBase dataBase;
 
     //================Data stucture for keeping data of same type at same places
     private ArrayList<ArrayList_LinearLayout> arrayList_linearLayouts;
@@ -25,12 +39,13 @@ public class MainActivity extends AppCompatActivity {
 
     //==============in build view class of android
     private TextView score;
-    private LinearLayout box, quit, reset;
+    private LinearLayout box, quit, reset, topscore;
     private TextView scoreBoard;
+    private EditText playerName;
 
     //=============Variables that are used in this
     private int milisecondRepeat = 5000;
-    private int idPush = 0, temp, colorId, Score_Card = 0;
+    private int idPush = 0, temp, colorId, Score_Card = 0, RESULTCODE = 0;
 
     //============inbuild classes of android
     private static final Random RANDOM = new Random();
@@ -38,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private ColorDrawable viewColor;
     private MediaPlayer mediaPlayer;
     private Vibrator vibe;
+    private Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +75,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //===========this is the dialog popup for showing updated score ================================
-    private void dialogCustom(int score) {
-        final Dialog dialog = new Dialog(MainActivity.this);
+    private void dialogCustom(final int score) {
+        dialog = new Dialog(MainActivity.this);
         dialog.setContentView(R.layout.custompopup);
         scoreBoard = dialog.findViewById(R.id.scoreUpdate);
+        playerName = dialog.findViewById(R.id.playerName);
         scoreBoard.setText(String.valueOf(score));
 
         //===============For closing the dialog box
@@ -70,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         quit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.cancel();
+                onDestroy();
             }
         });
 
@@ -82,6 +99,24 @@ public class MainActivity extends AppCompatActivity {
                 StartTimer();
                 dialog.cancel();
                 Score_Card = 0;
+            }
+        });
+
+        //============For topScore the dialog box
+        topscore = dialog.findViewById(R.id.topscore);
+        topscore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (playerName.getText().length() <= 0) {
+                    Toast.makeText(MainActivity.this, "Please Enter Your Name", Toast.LENGTH_SHORT).show();
+                } else {
+                    //===============Adding Data to DataBase
+                    dataBase = new DataBase(MainActivity.this);
+                    dataBase.Insert_Function_Score(playerName.getText().toString(), score);
+                    Intent intent = new Intent(MainActivity.this, TopScoreActiity.class);
+                    //startActivityForResult(intent, RESULTCODE);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -210,4 +245,5 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         mediaPlayer.release();
     }
+
 }

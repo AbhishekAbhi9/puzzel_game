@@ -10,34 +10,49 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/box_one"
         android:orientation="vertical">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Score"
-            android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
-            android:textSize="40sp"
-            android:textStyle="bold" />
+            android:background="@color/box_one"
+            android:orientation="vertical">
 
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            android:background="@color/colorPrimary" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Score"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="40sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/scoreUpdate"
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/scoreUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="19"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="80sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/playerName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="19"
-            android:padding="5dp"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="80sp"
-            android:textStyle="bold" />
+            android:layout_height="50dp"
+            android:layout_margin="20dp"
+            android:background="@color/white"
+            android:hint=" player Name please!" />
     </LinearLayout>
 
     <RelativeLayout
@@ -52,7 +67,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/setting"
+                android:id="@+id/topscore"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -71,7 +86,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Setting"
+                    android:text="@string/topScore"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
 
@@ -97,7 +112,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="reset"
+                    android:text="@string/reset"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
 
@@ -123,7 +138,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Quit"
+                    android:text="@string/quit"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
 
