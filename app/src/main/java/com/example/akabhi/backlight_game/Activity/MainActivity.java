@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
                         });
                     }
 
-                    score.setText("seconds remaining: " + millisUntilFinished / 1000 + " Score :" + Score_Card);
+                    score.setText(" Score :" + Score_Card);
                     //==============================================================================
                     //temp = 0 => temp = idPush => temp != 0
                     temp = idPush;
